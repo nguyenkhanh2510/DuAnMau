@@ -97,6 +97,11 @@ public class TrangChu extends javax.swing.JFrame {
         btnchuyende.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnchuyende.setMargin(new java.awt.Insets(2, 16, 2, 16));
         btnchuyende.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnchuyende.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnchuyendeActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btnchuyende);
 
         btnkhoahoc.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -316,11 +321,11 @@ public class TrangChu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mnidoimkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnidoimkActionPerformed
-
+        new DoiMatKhau(this,true).setVisible(true);
     }//GEN-LAST:event_mnidoimkActionPerformed
 
     private void mnikhoahocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnikhoahocActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_mnikhoahocActionPerformed
 
     private void mniDTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDTKActionPerformed
@@ -346,6 +351,10 @@ public class TrangChu extends javax.swing.JFrame {
     private void mniketthuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniketthuActionPerformed
         System.exit(0);
     }//GEN-LAST:event_mniketthuActionPerformed
+
+    private void btnchuyendeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnchuyendeActionPerformed
+        new QLChuyenDe(this, true).setVisible(true);
+    }//GEN-LAST:event_btnchuyendeActionPerformed
 
     /**
      * @param args the command line arguments

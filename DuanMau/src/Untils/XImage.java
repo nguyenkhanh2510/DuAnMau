@@ -38,4 +38,9 @@ public class XImage {
             throw new RuntimeException(e);
         }
     }
+    
+    public static ImageIcon read(String fileName){
+        File file = new File("Logos",fileName);
+        return new ImageIcon(new ImageIcon(file.getAbsolutePath()).getImage().getScaledInstance(172, 216, Image.SCALE_DEFAULT));
+    }
 }
