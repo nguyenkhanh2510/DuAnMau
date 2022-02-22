@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author Admin
  */
-public class KhoaHocDao extends EdusysDao<KhoaHoc, String> {
+public class KhoaHocDao extends EdusysDao<KhoaHoc, Integer> {
 
     private static KhoaHoc getModel(ResultSet rs) throws SQLException {
         KhoaHoc kh = new KhoaHoc();
@@ -40,7 +40,7 @@ public class KhoaHocDao extends EdusysDao<KhoaHoc, String> {
     }
 
     @Override
-    public void delete(String entity) {
+    public void delete(Integer entity) {
         String sql = "Delete from KhoaHOc where MaKH=?";
         int i = JdbcHelper.update(sql, entity);
     }
@@ -58,8 +58,7 @@ public class KhoaHocDao extends EdusysDao<KhoaHoc, String> {
         return selectBySQL(sql);
     }
 
-    @Override
-    public KhoaHoc SelectByID(String entity) {
+    public KhoaHoc SelectByID(Integer entity) {
         try {
             String sql = "select * from KhoaHOc where MaKH = ?";
             List<KhoaHoc> list = selectBySQL(sql, entity);
@@ -83,6 +82,11 @@ public class KhoaHocDao extends EdusysDao<KhoaHoc, String> {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public List<KhoaHoc> selectByChuyenDe(String maCD) {
+        String sql = "select * from KhoaHoc where MaCD = ?";
+        return selectBySQL(sql, maCD);
     }
 
 }

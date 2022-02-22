@@ -1,8 +1,13 @@
 package View;
 
+import Helper.Auth;
+import Helper.MsgBox;
 import Untils.XImage;
+import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.Timer;
@@ -13,6 +18,51 @@ public class TrangChu extends javax.swing.JFrame {
         initComponents();
         //setLocationRelativeTo(null);
         init();
+    }
+
+    void login() {
+        if (Auth.islogin()) {
+            MsgBox.alert(this, "Bạn đăng nhập với tài khoản: " + Auth.user.getMaNV());
+        } else {
+            new DangNhap(this, true).setVisible(true);
+        }
+    }
+
+    void logOut() {
+        if (MsgBox.confirm(this, "Bạn có muốn Đăng Xuất không")) {
+            Auth.clear();
+            MsgBox.alert(this, "Đăng Xuất Thành công");
+        }
+    }
+
+    void doiMK() {
+        if (!Auth.islogin()) {
+            MsgBox.alert(this, "Bạn chưa Đăng Nhập");
+        } else {
+            new DoiMatKhau(this, true).setVisible(true);
+        }
+    }
+
+    void exit() {
+        if (MsgBox.confirm(this, "Bạn có muốn Thoát không")) {
+            System.exit(0);
+        }
+    }
+
+    void openChuyenDe() {
+        if (!Auth.islogin()) {
+            MsgBox.alert(this, "Bạn Chưa Đăng Nhập");
+        } else {
+            new QLChuyenDe(this, true).setVisible(true);
+        }
+    }
+
+    void openKhoaHoc() {
+        if (!Auth.islogin()) {
+            MsgBox.alert(this, "Bạn Chưa Đăng Nhập");
+        } else {
+            new QLKhoaHoc(this, true).setVisible(true);
+        }
     }
 
     /**
@@ -73,6 +123,11 @@ public class TrangChu extends javax.swing.JFrame {
         btndangxuat.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btndangxuat.setMargin(new java.awt.Insets(2, 16, 2, 16));
         btndangxuat.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btndangxuat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btndangxuatActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btndangxuat);
 
         btnketthuc.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -111,6 +166,11 @@ public class TrangChu extends javax.swing.JFrame {
         btnkhoahoc.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnkhoahoc.setMargin(new java.awt.Insets(2, 16, 2, 16));
         btnkhoahoc.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnkhoahoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnkhoahocActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btnkhoahoc);
 
         btnnguoihoc.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -219,6 +279,11 @@ public class TrangChu extends javax.swing.JFrame {
         mmnichuyende.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_DOWN_MASK));
         mmnichuyende.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Lists.png"))); // NOI18N
         mmnichuyende.setText("Chuyên Đề");
+        mmnichuyende.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mmnichuyendeActionPerformed(evt);
+            }
+        });
         jMenu2.add(mmnichuyende);
 
         mnikhoahoc.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_DOWN_MASK));
@@ -321,11 +386,11 @@ public class TrangChu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void mnidoimkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnidoimkActionPerformed
-        new DoiMatKhau(this,true).setVisible(true);
+        doiMK();
     }//GEN-LAST:event_mnidoimkActionPerformed
 
     private void mnikhoahocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnikhoahocActionPerformed
-        
+        openKhoaHoc();
     }//GEN-LAST:event_mnikhoahocActionPerformed
 
     private void mniDTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDTKActionPerformed
@@ -341,20 +406,32 @@ public class TrangChu extends javax.swing.JFrame {
     }//GEN-LAST:event_mniGTSPPActionPerformed
 
     private void btnketthucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnketthucActionPerformed
-        System.exit(0);
+        exit();
     }//GEN-LAST:event_btnketthucActionPerformed
 
     private void mnidangnhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnidangnhapActionPerformed
-        new DangNhap(this, true).setVisible(true);
+        login();
     }//GEN-LAST:event_mnidangnhapActionPerformed
 
     private void mniketthuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniketthuActionPerformed
-        System.exit(0);
+        exit();
     }//GEN-LAST:event_mniketthuActionPerformed
 
     private void btnchuyendeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnchuyendeActionPerformed
-        new QLChuyenDe(this, true).setVisible(true);
+        openChuyenDe();
     }//GEN-LAST:event_btnchuyendeActionPerformed
+
+    private void mmnichuyendeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mmnichuyendeActionPerformed
+        openChuyenDe();
+    }//GEN-LAST:event_mmnichuyendeActionPerformed
+
+    private void btndangxuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndangxuatActionPerformed
+        logOut();
+    }//GEN-LAST:event_btndangxuatActionPerformed
+
+    private void btnkhoahocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnkhoahocActionPerformed
+        openKhoaHoc();        // TODO add your handling code here:
+    }//GEN-LAST:event_btnkhoahocActionPerformed
 
     /**
      * @param args the command line arguments
