@@ -7,6 +7,8 @@ package Untils;
 
 import Helper.MsgBox;
 import java.awt.Color;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JLabel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextArea;
@@ -116,6 +118,23 @@ public class UtilityHelper {
     public static boolean CheckHinh(JLabel lbl) {
         if (lbl.getToolTipText().equals("")) {
             MsgBox.alert(lbl.getRootPane(), "Hình không để trống");
+            return true;
+        }
+        return false;
+    }
+    
+    public static boolean checkNgay(JTextField txt,String pattern){
+         if(UtilityHelper.CheckNull(txt,"Ngày")){
+             return true;
+         }
+         SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+        String ngay = txt.getText();
+        Date d = null;
+        try {
+            d = sdf.parse(ngay);
+        } catch (Exception e) {
+            MsgBox.alert(txt.getRootPane(), "Ngày không đúng định dạng DD-MM-YYYY");
+            txt.setBackground(Color.red);
             return true;
         }
         return false;
