@@ -93,6 +93,16 @@ public class NguoiHocDao extends EdusysDao<NguoiHoc, String> {
             throw new RuntimeException(e);
         }
     }
+    
+    public List<NguoiHoc> selectByHoTen(String keyword) {
+        String sql = "select * from NguoiHoc where HoTen like ?";
+        return selectBySQL(sql, "%" + keyword + "%");
 
+    }
 
+    public List<NguoiHoc> selectNotInCourse(int maKH,String keyword){
+        String sql = "select * from NguoiHoc where HoTen like ? and "
+                + " MaNH not in(select MaNH from HocVien where MaKH = ?)";
+        return selectBySQL(sql, "%"+keyword+"%",maKH);
+    }
 }

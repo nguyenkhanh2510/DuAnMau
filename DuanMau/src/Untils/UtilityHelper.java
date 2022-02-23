@@ -139,4 +139,32 @@ public class UtilityHelper {
         }
         return false;
     }
+    
+    public static boolean checkMail(JTextField txtemail) {
+        if (UtilityHelper.CheckNull(txtemail, "Email")) {
+            return true;
+        }
+        String mail = txtemail.getText();
+        String mau = "\\w+@\\w+(\\.\\w+){1,2}";
+        if (!mail.matches(mau)) {
+            MsgBox.alert(txtemail.getRootPane(), "Email không đúng định dạng");
+            txtemail.setBackground(Color.red);
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean checkSDT(JTextField txtsdt) {
+        if (UtilityHelper.CheckNull(txtsdt, "SĐT")) {
+            return true;
+        }
+        String sdt = txtsdt.getText();
+        String mau = "0\\d{9,10}";
+        if (!sdt.matches(mau)) {
+            MsgBox.alert(txtsdt.getRootPane(), "SDT chỉ có 10 hoặc 11 số bắt đầu từ 0");
+            txtsdt.setBackground(Color.red);
+            return true;
+        }
+        return false;
+    }
 }
