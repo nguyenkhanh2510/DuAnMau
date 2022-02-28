@@ -41,6 +41,7 @@ public class QLKhoaHoc extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
         this.fillCombobox();
         this.cbo.setToolTipText("-1");
+        this.Clear();
     }
 
     void fillCombobox() {

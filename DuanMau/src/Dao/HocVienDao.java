@@ -88,4 +88,8 @@ public class HocVienDao extends EdusysDao<HocVien, Object> {
         }
     }
 
+    public List<HocVien> selectByKhoaHoc(int maKH) {
+        String sql = "select * from HocVien where MaKH = ?";
+        return selectBySQL(sql, maKH);
+    }
 }

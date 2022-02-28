@@ -25,9 +25,9 @@ public class DangNhap extends javax.swing.JDialog {
     }
 
     void dangNhap() {
-        String user = this.txtTK.getText();
+        String user = txtTK.getText();
         String pass = new String(txtMK.getPassword());
-        Auth.user = this.nv.SelectByID(user);
+        Auth.user = nv.SelectByID(user);
         if (Auth.user == null) {
             MsgBox.alert(this, "Tên Tài Khoản Không Chính xác");
         } else if (!pass.equals(Auth.user.getMatKhau())) {

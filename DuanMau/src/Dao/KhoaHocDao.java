@@ -89,4 +89,19 @@ public class KhoaHocDao extends EdusysDao<KhoaHoc, Integer> {
         return selectBySQL(sql, maCD);
     }
 
+    public List<Integer> selectbyYear() {
+        String sql = "Select Distinct year(NgayKG) from KhoaHoc order by year(NgayKG) desc";
+        List<Integer> list = new ArrayList<>();
+        try {
+            ResultSet rs = JdbcHelper.query(sql);
+            while (rs.next()) {
+                list.add(rs.getInt(1));
+            }
+            System.out.println(list.size());
+            rs.getStatement().getConnection().close();
+            return list;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

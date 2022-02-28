@@ -65,6 +65,30 @@ public class TrangChu extends javax.swing.JFrame {
         }
     }
 
+    void openNguoiHoc() {
+        if (!Auth.islogin()) {
+            MsgBox.alert(this, "Bạn chưa đăng nhập");
+        } else {
+            new QLNguoiHoc(this, true).setVisible(true);
+        }
+    }
+
+    void openHocVien() {
+        if (!Auth.islogin()) {
+            MsgBox.alert(this, "Bạn chưa đăng nhập");
+        } else {
+            new QLHocVien(this, true).setVisible(true);
+        }
+    }
+
+    void openThongKe() {
+        if (!Auth.islogin()) {
+            MsgBox.alert(this, "Bạn chưa đăng nhập");
+        } else {
+            new ThongKe(this, true).setVisible(true);
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -80,9 +104,11 @@ public class TrangChu extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JToolBar.Separator();
         btnchuyende = new javax.swing.JButton();
         btnkhoahoc = new javax.swing.JButton();
-        btnnguoihoc = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JToolBar.Separator();
-        btnhuongdan = new javax.swing.JButton();
+        btnnguoihoc = new javax.swing.JButton();
+        btnnguoihoc1 = new javax.swing.JButton();
+        jSeparator7 = new javax.swing.JToolBar.Separator();
+        btnnguoihoc2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         lblDongHo = new javax.swing.JLabel();
@@ -113,6 +139,7 @@ public class TrangChu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("HỆ THỐNG QUẢN LÝ ĐÀO TẠO");
+        setBackground(new java.awt.Color(255, 255, 255));
 
         jToolBar1.setRollover(true);
 
@@ -172,6 +199,7 @@ public class TrangChu extends javax.swing.JFrame {
             }
         });
         jToolBar1.add(btnkhoahoc);
+        jToolBar1.add(jSeparator3);
 
         btnnguoihoc.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         btnnguoihoc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Clien list.png"))); // NOI18N
@@ -180,17 +208,41 @@ public class TrangChu extends javax.swing.JFrame {
         btnnguoihoc.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnnguoihoc.setMargin(new java.awt.Insets(2, 16, 2, 16));
         btnnguoihoc.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnnguoihoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnnguoihocActionPerformed(evt);
+            }
+        });
         jToolBar1.add(btnnguoihoc);
-        jToolBar1.add(jSeparator3);
 
-        btnhuongdan.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        btnhuongdan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Help.png"))); // NOI18N
-        btnhuongdan.setText("Hướng Dẫn");
-        btnhuongdan.setFocusable(false);
-        btnhuongdan.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnhuongdan.setMargin(new java.awt.Insets(2, 16, 2, 16));
-        btnhuongdan.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(btnhuongdan);
+        btnnguoihoc1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnnguoihoc1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Clien list.png"))); // NOI18N
+        btnnguoihoc1.setText("Học Viên");
+        btnnguoihoc1.setFocusable(false);
+        btnnguoihoc1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnnguoihoc1.setMargin(new java.awt.Insets(2, 16, 2, 16));
+        btnnguoihoc1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnnguoihoc1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnnguoihoc1ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(btnnguoihoc1);
+        jToolBar1.add(jSeparator7);
+
+        btnnguoihoc2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        btnnguoihoc2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Clien list.png"))); // NOI18N
+        btnnguoihoc2.setText("Thống kê");
+        btnnguoihoc2.setFocusable(false);
+        btnnguoihoc2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnnguoihoc2.setMargin(new java.awt.Insets(2, 16, 2, 16));
+        btnnguoihoc2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnnguoihoc2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnnguoihoc2ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(btnnguoihoc2);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icon/Info.png"))); // NOI18N
         jLabel2.setText("HỆ THỐNG ĐÀO TẠO");
@@ -202,7 +254,7 @@ public class TrangChu extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -368,18 +420,19 @@ public class TrangChu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 771, Short.MAX_VALUE)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 988, Short.MAX_VALUE)
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -433,6 +486,18 @@ public class TrangChu extends javax.swing.JFrame {
         openKhoaHoc();        // TODO add your handling code here:
     }//GEN-LAST:event_btnkhoahocActionPerformed
 
+    private void btnnguoihocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnguoihocActionPerformed
+        openNguoiHoc();
+    }//GEN-LAST:event_btnnguoihocActionPerformed
+
+    private void btnnguoihoc1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnguoihoc1ActionPerformed
+        openHocVien();
+    }//GEN-LAST:event_btnnguoihoc1ActionPerformed
+
+    private void btnnguoihoc2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnguoihoc2ActionPerformed
+        openThongKe();
+    }//GEN-LAST:event_btnnguoihoc2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -472,10 +537,11 @@ public class TrangChu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnchuyende;
     private javax.swing.JButton btndangxuat;
-    private javax.swing.JButton btnhuongdan;
     private javax.swing.JButton btnketthuc;
     private javax.swing.JButton btnkhoahoc;
     private javax.swing.JButton btnnguoihoc;
+    private javax.swing.JButton btnnguoihoc1;
+    private javax.swing.JButton btnnguoihoc2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
@@ -490,6 +556,7 @@ public class TrangChu extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JPopupMenu.Separator jSeparator5;
     private javax.swing.JPopupMenu.Separator jSeparator6;
+    private javax.swing.JToolBar.Separator jSeparator7;
     private javax.swing.JToolBar jToolBar1;
     private javax.swing.JLabel lblDongHo;
     private javax.swing.JMenuItem mmnichuyende;

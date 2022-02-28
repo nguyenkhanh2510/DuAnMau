@@ -16,23 +16,23 @@ import java.util.List;
  */
 public class ThongKeDao {
 
-    private List<Object[]> getListOfArray(String sql, String[] cols, Object... args) {
-        List<Object[]> list = new ArrayList<>();
+    private List<Object[]> getListOfArray(String sql, String[] cols, Object... args) { 
         try {
+             List<Object[]> list = new ArrayList<>();
             ResultSet rs = JdbcHelper.query(sql, args);
             while (rs.next()) {
-                Object[] vail = new Object[cols.length];
+                Object[] vals = new Object[cols.length];
                 for (int i = 0; i < cols.length; i++) {
-                    vail[i] = rs.getObject(cols[i]);
+                    vals[i] = rs.getObject(cols[i]);
 
                 }
-                list.add(vail);
+                list.add(vals);
             }
             rs.getStatement().getConnection().close();
+            return list;
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        return list;
     }
 
     public List<Object[]> getBangDiem(Integer maKH) {
@@ -42,20 +42,20 @@ public class ThongKeDao {
     }
 
     public List<Object[]> getLuongNguoiHoc() {
-        String sql = "{Call sp_ThongkeNguoiHoc}";
-        String[] cols = {"Nam", "SoNH", "DauTien", "CuoiCung"};
+        String sql = "{Call sp_LuongNguoiHoc}";
+        String[] cols = {"Nam", "SoLuong", "DauTien", "CuoiCung"};
         return this.getListOfArray(sql, cols);
     }
 
     public List<Object[]> getDiemChuyenDe() {
-        String sql = "{Call sp_ThongkeDiem}";
-        String[] cols = {"TenCD", "SoHV", "ThapNhat", "CaoNhat", "TrungBinh"};
+        String sql = "{Call sp_DiemChuyenDe}";
+        String[] cols = {"ChuyenDe", "SoHV", "ThapNhat", "CaoNhat", "TrungBinh"};
         return this.getListOfArray(sql, cols);
     }
 
     public List<Object[]> getDoanhThu(int nam) {
-        String sql = "{Call sp_ThongKeDoanhThu(?)}";
-        String[] cols = {"ChuyenDe", "SoKH", "SoHV", "HocPhi", "ThapNhat", "CaoNhat", "TrungBinh"};
+        String sql = "{Call sp_DoanhThu(?)}";
+        String[] cols = {"ChuyenDe", "SoKH", "SoHV", "DoanhThu", "ThapNhat", "CaoNhat", "TrungBinh"};
         return this.getListOfArray(sql, cols, nam);
     }
 }
