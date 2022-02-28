@@ -167,4 +167,17 @@ public class UtilityHelper {
         }
         return false;
     }
+    
+    public static String XepLoai(double diem){
+        if(diem < 5){
+            return "Chưa đạt";
+        }else if(diem < 6.5){
+         return "Trung bình";
+        }else if(diem < 7.5){
+            return "Khá";
+        }else if(diem < 9){
+            return "Giỏi";
+        }
+        return "Xuất Sắc";
+    }
 }

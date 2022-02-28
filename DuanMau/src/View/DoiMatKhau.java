@@ -31,16 +31,16 @@ public class DoiMatKhau extends javax.swing.JDialog {
     }
 
     public boolean checkNull() {
-        if (UtilityHelper.CheckNull(this.txtAcc, "Tên Tài Khoản")
-                || UtilityHelper.checkNullPass(this.txtPass, "Mật Khẩu")
-                || UtilityHelper.checkPass(this.txtNewPass, "Mật khẩu mới")) {
+        if (UtilityHelper.CheckNull(txtAcc, "Tên Tài Khoản")
+                || UtilityHelper.checkNullPass(txtPass, "Mật Khẩu")
+                || UtilityHelper.checkPass(txtNewPass, "Mật khẩu mới")) {
 
             return true;
         }
 
-        String oldpass = new String(this.txtPass.getPassword());
-        String newpass = new String(this.txtNewPass.getPassword());
-        String cfpass = new String(this.txtResPass.getPassword());
+        String oldpass = new String(txtPass.getPassword());
+        String newpass = new String(txtNewPass.getPassword());
+        String cfpass = new String(txtResPass.getPassword());
         if (!newpass.equals(cfpass)) {
             MsgBox.alert(this, "Mật Khẩu xác nhận không đúng");
             return true;
@@ -161,20 +161,20 @@ public class DoiMatKhau extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDmkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDmkActionPerformed
-        this.txtAcc.setBackground(Color.white);
-        this.txtNewPass.setBackground(Color.white);
-        this.txtPass.setBackground(Color.white);
-        this.txtResPass.setBackground(Color.white);
-        String user = this.txtAcc.getText();
-        String oldpass = new String(this.txtPass.getPassword());
-        String newpass = new String(this.txtNewPass.getPassword());
-        String cfpass = new String(this.txtResPass.getPassword());
-        if (this.checkNull()) {
+        txtAcc.setBackground(Color.white);
+        txtNewPass.setBackground(Color.white);
+        txtPass.setBackground(Color.white);
+        txtResPass.setBackground(Color.white);
+        String user = txtAcc.getText();
+        String oldpass = new String(txtPass.getPassword());
+        String newpass = new String(txtNewPass.getPassword());
+        String cfpass = new String(txtResPass.getPassword());
+        if (checkNull()) {
             return;
         }
 
-        Auth.user.setMatKhau(new String(this.txtNewPass.getPassword()));
-        this.nvDAO.update(Auth.user);
+        Auth.user.setMatKhau(new String(txtNewPass.getPassword()));
+        nvDAO.update(Auth.user);
         MsgBox.alert(this, "Đổi Mật Khẩu thành công");
     }//GEN-LAST:event_btnDmkActionPerformed
 
